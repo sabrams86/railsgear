@@ -1,6 +1,10 @@
-h1 Your Rental Contract
-p= @contract.start_date
-p= @contract.end_date
-p= @contract.owner_id
-p= @contract.renter_id
-p= @contract.item_id
+- if current_user.id === @contract.owner_id
+  h3 Your Rental Agreement
+  h4 Start Date: #{@contract.start_date}
+  h4 End Date: #{@contract.end_date}
+  h4 Status: #{@contract.status}
+- if current_user.id === @contract.renter_id
+  h3 Your Rental Agreement
+  h4 Pickup Date: #{@contract.start_date}
+  h4 Dropoff Date: #{@contract.end_date}
+  h4 Status: #{@contract.status}

@@ -1,9 +1,9 @@
 - if !current_user
   h5 Login to Rent this!
-- elsif current_user != @item.user_id
+- elsif current_user.id != @item.user_id
   h4
     a.dark(href='/users/#{@item.user_id}/items/#{@item.id}/contracts/new') Rent it!
-- elsif current_user === owner
+- elsif current_user.id === @item.user_id
   h4
     a.dark(href='/users/#{@item.user_id}/items') Pending Rentals
     |  |
