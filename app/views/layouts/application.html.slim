@@ -1,0 +1,37 @@
+doctype html
+html
+  head
+    title Railsgear
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  body
+    header
+      .container
+        h2.title.left
+          a href='/' Friendly Gear
+          small  a place for friends with gear
+        - if current_user
+          .usermenu.right
+            div
+              a href='/users/#{current_user}/edit' Edit Profile
+            div
+              a href='/users/#{current_user}/items' My Gear
+            div
+              = link_to "Logout", destroy_user_session_path
+        - else
+          .usermenu.right
+            | Login
+            form method='post' action='/login'
+              .row
+                input.sml type='text' name='username' placeholder='username'
+                input.sml type='password' name='password' placeholder='password'
+              .row
+                input.sml type='submit' value='Login'
+                | or
+                a href='/users/new' Sign Up
+    main
+      .container
+        == yield
+    footer
+      .container

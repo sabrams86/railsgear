@@ -1,0 +1,18 @@
+h1 Welcome #{@user.name}
+h2 Your Gear
+= link_to 'Add Gear', new_user_item_path(current_user)
+table
+  thead
+    tr
+      th Name
+      th Brand
+      th Condition
+      th
+  tbody
+    - @user.items.each do |item|
+      tr
+        td= item.name
+        td= item.brand
+        td= item.condition
+        td
+          = link_to "Show", user_item_path(@user.id, item.id)
