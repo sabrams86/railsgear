@@ -1,14 +1,18 @@
 Rails.application.routes.draw do
 
+  root 'items#index'
+  get 'items' => 'items#index'
   devise_for :users, controllers: { sessions: "users/sessions" }
 
   resources :users do
-    resources :items
+    resources :items do
+      resources :contracts
+    end
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  root 'users#show'
+
   # You can have the root of your site routed with "root"
 
   # Example of regular route:

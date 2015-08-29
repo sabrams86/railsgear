@@ -6,7 +6,13 @@ class ItemsController < ApplicationController
 
   def new
     @user = current_user
+    @categories = Category.all
     @item = Item.new
+  end
+  
+  def show
+    @user = current_user
+    @item = Item.find(params[:id])
   end
 
   def create

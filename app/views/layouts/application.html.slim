@@ -14,9 +14,9 @@ html
         - if current_user
           .usermenu.right
             div
-              a href='/users/#{current_user}/edit' Edit Profile
+              = link_to "Edit Profile", edit_user_path(current_user)
             div
-              a href='/users/#{current_user}/items' My Gear
+              = link_to "My Gear", user_path(current_user)
             div
               = link_to "Logout", destroy_user_session_path
         - else

@@ -1,0 +1,7 @@
+h1 New Gear Contract
+= form_for [@user, @item, @contract] do |f|
+  =f.label :start_date
+  =f.date_select :start_date
+  =f.label :end_date
+  =f.date_select :end_date
+  =f.submit

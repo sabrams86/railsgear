@@ -1,0 +1,30 @@
+- if !current_user
+  h5 Login to Rent this!
+- elsif current_user != @item.user_id
+  h4
+    a.dark(href='/users/#{@item.user_id}/items/#{@item.id}/contracts/new') Rent it!
+- elsif current_user === owner
+  h4
+    a.dark(href='/users/#{@item.user_id}/items') Pending Rentals
+    |  |
+    a.dark(href='/users/#{@item.user_id}/items/#{@item.id}/edit') Edit
+- else
+
+h2= @item.name
+/ img.gearimage src='#{@item.image_url}' alt='broken image'
+.info
+  .row
+    h6.noTop Description:
+    p= @item.description
+  .row
+    h6 Brand:
+    p= @item.brand
+  .row
+    h6 Condition:
+    p= @item.condition
+  .row
+    h6 Categories:
+    ul
+      / - @item.categories.each do |category|
+        / li= category.name
+  = link_to "Back", items_path

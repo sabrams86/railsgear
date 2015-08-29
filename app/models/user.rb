@@ -5,5 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_many :items, dependent: :destroy
   accepts_nested_attributes_for :items
+  has_many :contracts, dependent: :destroy
+  accepts_nested_attributes_for :contracts
 
 end
