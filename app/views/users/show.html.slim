@@ -1,7 +1,45 @@
-h1 Welcome #{@user.name}
-= image_tag @user.image.thumb('400x200').url if @user.image_stored?
-h2 Your Gear
-.dark= link_to 'Add Gear', new_user_item_path(current_user)
+h3 Welcome #{@user.name}
+h4
+  .dark= link_to 'Add Gear', new_user_item_path(current_user)
+= image_tag @user.image.thumb('400x200').url, class: 'avatar' if @user.image_stored?
+.col8
+  - if @ownerContracts.length > 0
+    h4.noTop Rental Requests
+    table.rentals
+      thead
+        tr
+          th Item
+          th Status
+          th Start Date
+          th End Date
+          th Options
+      tbody
+        - @ownerContracts.each do |ownerContract|
+          tr
+            td= ownerContract.item_id
+            td= ownerContract.status
+            td= ownerContract.start_date
+            td= ownerContract.end_date
+            td
+  - if @renterContracts.length > 0
+    h4.noTop Pending Rentals
+    table.rentals
+      thead
+        tr
+          th Item
+          th Status
+          th Start Date
+          th End Date
+          th Options
+      tbody
+        - @renterContracts.each do |renterContract|
+          tr
+            td= renterContract.item_id
+            td= renterContract.status
+            td= renterContract.start_date
+            td= renterContract.end_date
+            td
+h3 Your Gear
 table
   thead
     tr
@@ -17,40 +55,3 @@ table
         td= item.condition
         td
           = link_to "Show", user_item_path(@user.id, item.id)
-- if @ownerContracts.length > 0
-  h4.noTop Rental Requests
-  table.rentals
-    thead
-      tr
-        th Item
-        th Status
-        th Start Date
-        th End Date
-        th Options
-    tbody
-      - @ownerContracts.each do |ownerContract|
-        tr
-          td= ownerContract.item_id
-          td= ownerContract.status
-          td= ownerContract.start_date
-          td= ownerContract.end_date
-          td
-
-- if @renterContracts.length > 0
-  h4.noTop Pending Rentals
-  table.rentals
-    thead
-      tr
-        th Item
-        th Status
-        th Start Date
-        th End Date
-        th Options
-    tbody
-      - @renterContracts.each do |renterContract|
-        tr
-          td= renterContract.item_id
-          td= renterContract.status
-          td= renterContract.start_date
-          td= renterContract.end_date
-          td
