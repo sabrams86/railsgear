@@ -1,4 +1,4 @@
-input {
+input, button {
   border: 1px solid $green;
   border-radius: 5px;
   margin: 5px;
@@ -51,7 +51,7 @@ select {
 select[multiple]{
   height: 5em;
 }
-input:focus, textarea:focus, select:focus{
+input:focus, textarea:focus, select:focus, button:focus{
   border: 1px solid $black;
 }
 input[type='submit']:hover{
@@ -67,10 +67,28 @@ input[type='submit']:focus{
 input[type='submit']{
   font-size: 1.2em;
 }
+
+button:hover{
+  background-color: $grey;
+  color: $white;
+  border: 1px solid $green
+}
+button:focus{
+  background-color: $white;
+  color: $green;
+  border: 1px solid $green;
+}
+button{
+  font-size: 1.2em;
+}
 .btn {
   padding: 8px;
 }
 input.sml {
+  font-size: .5em;
+  width: 100px;
+}
+button.sml {
   font-size: .5em;
   width: 100px;
 }
@@ -92,4 +110,11 @@ input.sml {
 }
 #categories {
   width: 20%;
+}
+.inline {
+  display: inline;
+}
+.remember {
+  margin: 0;
+  width: 20px;
 }

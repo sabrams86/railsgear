@@ -1,11 +1,10 @@
-h1 Welcome to Friendly Gear
-
+- content_for :sidemenu do
+  .sidemenu.left
 - @items.each do |item|
   .listing
       p
         h6
           a(href='/users/#{item.user_id}/items/#{item.id}')= item.name
       p= item.description
-      / - if item.image_url
-        a(href='/users/#{item.user_id}/items/#{item.id}')
-          img.gearthumbnail(src='#{item.image_url}' alt='broken image')
+      a href='/users/#{item.user_id}/items/#{item.id}'
+        = image_tag item.image.thumb('150x150').url if item.image_stored?

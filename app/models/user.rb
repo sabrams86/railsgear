@@ -7,5 +7,6 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :items
   has_many :contracts, dependent: :destroy
   accepts_nested_attributes_for :contracts
+  dragonfly_accessor :image
 
 end

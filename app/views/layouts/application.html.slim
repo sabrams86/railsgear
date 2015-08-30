@@ -5,6 +5,7 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
+    = yield :head
   body
     header
       .container
@@ -18,19 +19,22 @@ html
             div
               = link_to "My Gear", user_path(current_user)
             div
-              = link_to "Logout", destroy_user_session_path
+              = link_to 'Logout', destroy_user_session_path, method: :delete
         - else
           .usermenu.right
             | Login
-            form method='post' action='/login'
+            = form_tag session_path(:user) do
               .row
-                input.sml type='text' name='username' placeholder='username'
-                input.sml type='password' name='password' placeholder='password'
+                .sml.inline= text_field_tag 'user[email]'
+                .sml.inline= password_field_tag 'user[password]'
+                .inline.right= label_tag 'user[remember_me]', 'Remember me'
+                .inline.remember.right= check_box_tag 'user[remember_me]'
               .row
-                input.sml type='submit' value='Login'
+                button.sml Sign in
                 | or
-                a href='/users/new' Sign Up
+                = link_to "Sign Up", new_user_registration_path
     main
+      = yield :sidemenu
       .container
         == yield
     footer
