@@ -1,4 +1,4 @@
-$(document).ready(function() {
+function initialize() {
   $('#addcategory').on('click', function () {
     var span = document.createElement('span');
     var div = document.createElement('div');
@@ -22,4 +22,7 @@ $(document).ready(function() {
     $('#categorylist').val(categorylist);
     $(this).parent().remove();
   })
-});
+};
+
+$(document).ready(initialize);
+$(document).on('page:load', initialize);

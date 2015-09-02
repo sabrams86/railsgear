@@ -1,4 +1,4 @@
-$(document).ready(function() {
+function initialize() {
   var xhr = new XMLHttpRequest;
   xhr.open('get', '/categories');
   xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
@@ -15,4 +15,7 @@ $(document).ready(function() {
     })
   });
   xhr.send();
-});
+};
+
+$(document).ready(initialize);
+$(document).on('page:load', initialize);
